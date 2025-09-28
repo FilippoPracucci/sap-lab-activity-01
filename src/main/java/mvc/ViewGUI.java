@@ -8,12 +8,13 @@ import java.lang.reflect.InvocationTargetException;
 
 public class ViewGUI extends JFrame implements Observer<Integer> {
 
-    private final JTextField field = new JTextField("State value: " + 0);
+    private final JTextPane text = new JTextPane();
 
     public ViewGUI() {
         super("My BBoM App");
         final JPanel panel = new JPanel();
-        panel.add(this.field);
+        this.text.setText("State value: " + 0);
+        panel.add(this.text);
 
         this.setSize(300, 70);
         this.setResizable(false);
@@ -24,6 +25,7 @@ public class ViewGUI extends JFrame implements Observer<Integer> {
                 System.exit(-1);
             }
         });
+        this.text.setSize(this.getWidth(), Double.valueOf(this.getHeight() * 0.6).intValue());
 
         try {
             SwingUtilities.invokeAndWait(() -> this.setVisible(true));
@@ -34,6 +36,6 @@ public class ViewGUI extends JFrame implements Observer<Integer> {
 
     @Override
     public void onChange(final Integer value) {
-        this.field.setText("State value: " + value);
+        this.text.setText("State value: " + value);
     }
 }

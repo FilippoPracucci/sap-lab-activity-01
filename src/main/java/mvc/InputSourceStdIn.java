@@ -19,7 +19,7 @@ public class InputSourceStdIn implements InputSource {
                 try {
                     this.reader.readLine();
                     this.controllers.forEach(Controller::changeState);
-                } catch (IOException e) {
+                } catch (final IOException e) {
                     throw new RuntimeException(e);
                 }
             }
